@@ -1,4 +1,4 @@
-just finished making new accounts and hashing passwprd before storing in db.
+just finished making new accounts and hashing password before storing in db.
 
 need to make it so usernames can not have spaces or weird characters, and display error message if so
 need to have confirm password text box
