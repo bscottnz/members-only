@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-  h1 sign up to members only clubhouse
+  h3 sign up to members only clubhouse
   form(method='POST' action='')
     div.form-group
       label(for='username') Username: 
@@ -10,8 +10,17 @@ block content
     div.form-group
       label(for='password') Password: 
       input#password.form-control(type='password', placeholder='Enter New Password', name='password' required)
+
+    div.form-group
+      label(for='passwordConfirmation') Confirm password: 
+      input#passwordConfirmation.form-control(type='password', placeholder='Confirm Password', name='passwordConfirmation' required)
     
     button.btn.btn-primary(type='submit') Submit
 
   if error 
     p= error
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

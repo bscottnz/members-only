@@ -4,4 +4,20 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    nav  
+      a(href='/')
+        button Home
+      if !currentUser
+
+        a(href='/sign-up')
+          button Sign up 
+        a(href='/sign-in')
+          button Sign in
+      
+      if currentUser 
+        a(href='/upgrade')
+          button Upgrade membership
+        div   
+          h5 Logged in as #{currentUser.username}
+          <a href="/log-out">LOG OUT</a>
     block content

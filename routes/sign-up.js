@@ -1,7 +1,7 @@
 var express = require('express');
 const bcrypt = require('bcryptjs');
 var router = express.Router();
-const { body, validationResult } = require('express-validator');
+const { body, validationResult, check } = require('express-validator');
 const User = require('../models/user');
 
 /* GET sign up form. */
@@ -11,14 +11,29 @@ router.get('/', function (req, res, next) {
 
 router.post('/', [
   // validate username and password
-  body('username', 'Username required').trim().isLength({ min: 1 }).escape(),
+  body('username', 'Username required')
+    .trim()
+    .isLength({ min: 1 })
+    .isAlphanumeric()
+    .withMessage('Username may only contain letters and numbers')
+    .escape(),
   body('password', 'Password required').trim().isLength({ min: 1 }).escape(),
+  body('passwordConfirmation', 'Password confirmation required')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  // check password confirmation
+  check(
+    'passwordConfirmation',
+    'Password Confirmation field must have the same value as the password field'
+  ).custom((value, { req }) => value === req.body.password),
   (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.send(errors.array());
+      // res.send(errors.array());
+      res.render('sign-up', { errors: errors.array() });
     } else {
       // res.send(`Username: ${req.body.username}\nPassword: ${req.body.password}`);
 
