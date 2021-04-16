@@ -62,7 +62,7 @@ router.post('/', [
                 return next(err);
               }
 
-              res.send(newUser);
+              res.redirect('/');
             });
           });
         }

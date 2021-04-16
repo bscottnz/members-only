@@ -14,6 +14,7 @@ const User = require('./models/user');
 var indexRouter = require('./routes/index');
 var sign_upRouter = require('./routes/sign-up');
 var sign_inRouter = require('./routes/sign-in');
+var upgradeRouter = require('./routes/upgrade');
 
 var app = express();
 
@@ -84,6 +85,7 @@ app.get('/log-out', (req, res) => {
   req.logout();
   res.redirect('/');
 });
+app.use('/upgrade', upgradeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

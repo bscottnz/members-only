@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+  if currentUser
+    if currentUser.membership_status === 'none'
+      h3 Upgrade your membership for only $99.99 !!
+      form(action="/upgrade" method='POST') 
+        button.btn.btn-primary(type='submit') Upgrade NOW
+    if currentUser.membership_status === 'gold'
+      h3 Become an admin!
+
+  if !currentUser
+    h3 Create an account to upgrade membership!
