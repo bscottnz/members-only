@@ -8,6 +8,17 @@ block content
         button.btn.btn-primary(type='submit') Upgrade NOW
     if currentUser.membership_status === 'gold'
       h3 Become an admin!
+      form(action="/admin" method='POST')
+        div.form-group
+          label(for='password') Enter super secret password to become an admin (paypal coolben69 $999 to get password): 
+          input#password.form-control(type='password', placeholder='EnterPassword', name='password' required)
+          if message 
+            p(style='font-size:25px;') #[strong #{message}]
+    
+        button.btn.btn-primary(type='submit') Submit 
+
+    if currentUser.membership_status === 'admin'
+      h3 You are already an admin. You have reached peak clubhouse honor
 
   if !currentUser
     h3 Create an account to upgrade membership!

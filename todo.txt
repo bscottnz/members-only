@@ -1,1 +1,3 @@
-need to display login error info 
+just finished adding adding gold member status to accounts.
+
+ready tp start step 6

@@ -2,4 +2,19 @@ extends layout
 
 block content
   h1 Secret club house
+  if currentUser 
+    a(href='/new-post')
+        button Create new post
+
+  
+  each post in posts
+    div(style='padding: 10px; border: 1px solid black;margin-bottom:5px;')
+      h4= post.title 
+      p= post.content
+      if currentUser
+        if currentUser.membership_status !== 'none'  
+          p Posted by #[strong #{post.author.username}] at #{post.timestamp}
+        if currentUser.membership_status === 'admin'
+          a(href='/delete-post/' + post.id)
+            button delete post
 

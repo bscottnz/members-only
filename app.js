@@ -15,6 +15,9 @@ var indexRouter = require('./routes/index');
 var sign_upRouter = require('./routes/sign-up');
 var sign_inRouter = require('./routes/sign-in');
 var upgradeRouter = require('./routes/upgrade');
+var createPostRouter = require('./routes/new-post');
+var adminRouter = require('./routes/admin');
+var deleteRouter = require('./routes/delete-post');
 
 var app = express();
 
@@ -86,6 +89,9 @@ app.get('/log-out', (req, res) => {
   res.redirect('/');
 });
 app.use('/upgrade', upgradeRouter);
+app.use('/new-post', createPostRouter);
+app.use('/admin', adminRouter);
+app.use('/delete-post', deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

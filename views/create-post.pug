@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+  h3 Create a new post
+  form(action="" method='POST')
+    div.form-group
+      label(for='title') Title: 
+      input#title.form-control(type='text', placeholder='Post title', name='title' required)
+
+    div.form-group
+      label(for='title') Post content: 
+      textarea#content.form-control( placeholder='Post title', name='content' required)
+
+    button.btn.btn-primary(type='submit') Submit
